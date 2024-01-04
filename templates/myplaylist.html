@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Playlist</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: whitesmoke;
+            padding: 20px;
+        }
+
+        .playlist-form {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body style="background: url(/static/uploadsong.png);"><form method="POST" action="{{ url_for('myplaylist') }}">
+    <div class="container">
+        <div class="playlist-form mt-5">
+            <h1 class="text-center " style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Create Your Own Playlist</h1>
+            
+            
+                <div class="form-group">
+                    <label for="playlist_name">Your Playlist Name:</label>
+                    <input type="text" class="form-control" id="playlist_name" name="playlist_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Select Songs:</label>
+                    {% for song in all_songs %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="song_{{ song.id }}" name="selected_songs[]" value="{{ song.id }}">
+                            <label class="form-check-label" for="song_{{ song.id }}">
+                                {{ song.track }} - {{ song.creator }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create My Playlist</button>
+        </div>
+    </div></form>
+</body>
+</html>

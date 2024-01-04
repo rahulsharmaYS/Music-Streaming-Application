@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: url(/static/uploadsong.png);
+      
+    }
+
+    .navbar {
+      background: transparent;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    .search-bar {
+      width: 30%;
+      padding: 10px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      margin-left: 100px;
+      background-color: rgb(255, 255, 255);
+      color: white;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .song-details {
+      background: transparent;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(116, 115, 115, 0.829);
+      border-radius: 8px;
+      max-width: 600px;
+      margin: auto;
+      height: 500px;
+      backdrop-filter: blur(20px);
+    }
+
+    .song-details h2 {
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .song-details p {
+      margin-bottom: 15px;
+      overflow: hidden;
+      max-height: 370px;
+      overflow-y: auto;
+    }
+
+    .rating-button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .rating-options {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .rating-options button {
+      margin: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    function toggleAudio() {
+      var audio = document.getElementById('audioPlayer');
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+  </script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>muSICK - Track Page</title>
+</head>
+<body>
+<form action="/songview/{{track_id}}", method="POST" onsubmit="handleFormSubmit(event)">
+  <div class="navbar">
+    <h1 style="margin-right: auto;">muSICK</h1>
+
+    <div style="margin-left: auto;">
+      <a href="{{url_for('homepage')}}">Homepage</a>
+        <a href="{{url_for('base_page')}}">Logout</a>
+    </div>
+</div>
+
+<div class="content">
+  <!-- Song details (replace with dynamic data from your backend) -->
+  <div class="song-details">
+    <h2><i>
+      Enjoy vibing!</i>
+      <button class="rating-button" onclick="toggleRatingOptions()">Rate</button>
+    </h2>
+    <div class="rating-options" id="ratingOptions">
+      <div id="successMessage" style="display: none; color: green;">You rated the song successfully! thank you!</div>
+      <button onclick="setRating(1)">1</button>
+      <button onclick="setRating(2)">2</button>
+      <button onclick="setRating(3)">3</button>
+      <button onclick="setRating(4)">4</button>
+      <button onclick="setRating(5)">5</button>
+    </div>
+    <p><i style="color:darkgreen; font-size: medium;">Creator :</i> {{song.creator}}</p>
+    <p><i style="color: darkgreen;">Lyrics for the song:</i>
+      {{ song.lyrics }}
+    </p>
+  </div>
+</div>
+
+<script>
+  function toggleRatingOptions() {
+      var ratingOptions = document.getElementById('ratingOptions');
+      ratingOptions.style.display = (ratingOptions.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function setRating(rating) {
+      var successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+
+      var ratingOptions = document.getElementById('ratingOptions');
+      ratingOptions.style.display = 'none';
+
+      // You can handle the rating logic here, for now, just displaying the success message.
+    }
+
+    function handleFormSubmit(event) {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+      // You can add additional logic here if needed
+    }
+  </script>
+{% if song_url %}
+    <audio id="audioPlayer" controls style="margin-left: 600px;">
+        <source src="{{ song_url }}" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+{% else %}
+    <p>Audio Tune is not added for that!</p>
+{% endif %}
+</form>
+</body>
+</html>

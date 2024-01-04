@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url(/static/download.jpg);
+    }
+
+    .navbar {
+      background: transparent;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .upload-button {
+      background-color:whitesmoke;
+      backdrop-filter: blur(5px);
+      color: #000000;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 24px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+  </style>
+  <title>Creator Page</title>
+</head>
+<body><form action="/creatorkickstart" method="POST">
+
+<div class="navbar" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+  <h1>muSICK</h1>
+  <div>
+    <a href="{{url_for('homepage')}}">HomePage</a>
+    <a href="{{url_for('base_page')}}">Logout</a>
+  </div>
+</div>
+
+<div class="content" style="margin-top: 200px; border: 1px solid white; position: relative; height: 270px; bottom: 50px; top: 20px; width: 870px; border-radius: 5px; box-shadow: 0 0 20px white;">
+  <h2 style="color: white; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: italic;">Kickstart your Creator Journey by Uploading a Song and much more!</h2>
+  <a href="{{url_for('upload')}}" class="upload-button" style="color: white; background: rgb(14, 135, 234); border: 0.5px solid white; box-shadow: 0 0 10px white;">Start Uploading Songs!</a>
+</div>
+</form>
+</body>
+</html>

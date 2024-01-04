@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url(/static/download.jpg);
+}
+
+.registration-container {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.button, button[type="submit"] {
+  background-color: #479ad1;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-grow: 1;
+  margin-right: 5px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+  </style>
+  <title>Creator Registration</title>
+</head>
+
+<body><form action="/creatorreg" method="POST">
+  <div class="registration-container" style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: medium;">
+    <h2>Creator Registration</h2>
+
+    <input type="radio" id="yes" name="choice" value="yes">
+    <label for="yes" class="button-container">
+      <span class="button">Yes</span>
+      <div class="dot"></div>
+    </label>
+
+    <input type="radio" id="no" name="choice" value="no">
+    <label for="no" class="button-container">
+      <span class="button">Go Back</span>
+    </label>
+
+    <button type="submit" class="button" style="background-color: rgb(5, 99, 177);">Submit</button>
+  </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: url(/static/uploadsong.jpg);
+      backdrop-filter: blur(5px);
+    }
+    .navbar {
+      background-color: #292424;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    
+    .content {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .dashboard-section,
+    .uploads-section {
+      background-color:transparent;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 40%;
+    }
+
+    .dashboard-section h2,
+    .uploads-section h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .dashboard-sub-container {
+      margin-bottom: 15px;
+    }
+  </style>
+  <title>Creator Dashboard</title>
+</head>
+<body>
+
+<div class="navbar" style="border-radius: 5px; background-color: rgba(76, 0, 130, 0.584);">
+  <h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: italic;">Creator Dashboard</h1>
+  <div>
+    <a href="{{url_for('upload')}}" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: italic;">Upload</a>
+    <a href="{{url_for('homepage')}}" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: italic;">HomePage</a>
+    <a href="{{url_for('base_page')}}" style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Logout</a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="dashboard-section" style="border: 2px solid black;">
+    <h2 style="margin-bottom: 20px; font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; position: relative; left: 220px;">Dashboard</h2>
+    <div class="dashboard-sub-container" style="height: 150px; border: 1px solid #292424; border-radius: 5px;"><p style="position: relative; left: 30px;">Total Songs Uploaded: <div style="position: relative; top: 20px; left: 269px; font-size: xxx-large; bottom: 40px;">23</div></p></div>
+    <div class="dashboard-sub-container" style="height: 150px; border: 1px solid #292424; border-radius: 5px;"><p style="position: relative; left: 30px;">Average Rating: <div style="position: relative; top: 20px; left: 269px; font-size: xxx-large; bottom: 40px;">4.7</div></p></div>
+    <div class="dashboard-sub-container" style="height: 150px; border: 1px solid #292424; border-radius: 5px;"><p style="position: relative; left: 30px;">Total Albums: <div style="position: relative; top: 20px; left: 269px; font-size: xxx-large; bottom: 40px;">10</div></p></div>
+  </div>
+
+  <div class="uploads-section" style="border: 2px solid black;">
+    <h2 style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; position: relative; left: 200px;" >Your Recent Uploads</h2>
+    <table style="border: 0.5px solid white;">
+      <thead>
+        <tr>
+          <th>Song Name</th>
+          <th>Delete</th>
+          <!--th>Edit</th-->
+        </tr>
+      </thead>
+      <tbody>
+        {% for new_song in newsongs %}
+        <tr>
+          <td><a href="{{ url_for('edit', song_id=new_song.id) }}" style="text-decoration: none; color: black;">{{ new_song.track }}</a></td><form action="creatordashboard" method="POST">
+          <td><input type="hidden" name="song_to_delete" value="{{ new_song.id }}"><button type="submit" name="delete" value="{{new_song.id}}">Delete</button></td>
+          <!--td><input type="hidden" name="edit_song" value="{{ new_song.id }}"><button type="submit" name="edit" value="{{new_song.id}}">Edit</button></td-->
+        </tr>
+        {% endfor %}
+      </tbody>    
+    </table>
+  </div>
+</div>
+</form>
+</body>
+</html>
+

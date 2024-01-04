@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 700; background: url(/static/uploadsong.png);">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      height: 100%;
+    }
+
+    .navbar {
+      background-color: #d4c2c2;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      width: 70%;
+      background-color:transparent;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .upload-button {
+      background-color: #27ae60;
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+  <title>Upload Song</title>
+</head>
+<body style="height: 692px;width: 1100;"><form action="/upload" method="POST">
+
+<div class="navbar" style="padding-left: 0px; padding-right: 0px; border-radius: 10px; background-color: indianred;">
+  <h1 style="position: relative; left: 10px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: italic;">Creator Account</h1>
+  <div>
+    <a href="{{url_for('homepage')}}" style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Homepage</a>
+    <a href="{{url_for('creatordashboard')}}" style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Your Dashboard</a>
+    <a href="{{url_for('userlogin')}}" style="font-style: italic; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Logout</a>
+  </div>
+</div>
+
+<div class="content" style="backdrop-filter: blur(10px);">
+  <p style="color: red;">{{ message }}</p>
+  <h1 style="color: rgb(0, 0, 0); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Upload Track</h1>
+  
+  <form style="width: 800px; background: transparent;">
+    <label for="title" style="position: relative; right: 480px;">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="artist" style="position: relative; right: 457px;">Your Name:</label>
+    <input type="text" id="artist" name="artist" required>
+
+    <label for="lyrics" style="position: relative; right: 475px;">Lyrics:</label>
+    <textarea id="lyrics" name="lyrics" rows="5" required></textarea>
+
+    <button type="submit" class="upload-button" style="margin-left: 10px; border: 1px solid white; box-shadow: 0 0 10px white; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Upload</button>
+  </form>
+</div>
+</form>
+</body>
+</html>
