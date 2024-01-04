@@ -14,3 +14,7 @@ Music-Streaming-Application using Flask, Jinja, Html/Css, Bootstrap
     - pip install Flask_SQLAlchemy
     - pip install pandas
     - pip install plotly
+
+
+*P.S: I know there is a lot of extra unnecessary code but I am uploading the raw file that I submitted for my MAD-1 project.
+So, DEAL WITH IT ;)*
